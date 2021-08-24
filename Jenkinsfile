@@ -20,7 +20,7 @@ pipeline {
             steps {
                 echo 'Docker Build Started....'
 	 	script {
-	            sh 'sudo docker build -t rahmathulla/proj1:${BUILD_NUMBER}'
+	            sh 'sudo docker build -t rahmathulla/proj1:${BUILD_NUMBER}' .
                 }	
                 echo 'Docker Build Done....'
             }
