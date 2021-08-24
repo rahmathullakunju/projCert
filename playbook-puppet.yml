@@ -1,6 +1,6 @@
 -name: PUPPET
-    hosts: testserver
-    user: ec2-user
+ hosts: testserver
+ user: ec2-user
 
 tasks:
   -name: Copy puppet repo file
