@@ -9,14 +9,14 @@ pipeline {
                 echo 'Done install puppet agent....'
             	}
         }
-        stage('Install Docker on Slave') {
+        stage('Install Docker on testserver') {
             steps {
                 echo 'Start to install Docker....'
 		ansiblePlaybook become: true, credentialsId: '86ef8ad7-51f2-48ee-8d6e-257ad6f9bd79', disableHostKeyChecking: true, installation: 'MyAnsible', inventory: 'puppet.inv', playbook: 'docker-playbook.yml'
                 echo 'Done install Docker....'
             }
         }
-        stage ('Pull code to Slave'){
+        stage ('Git Checkout in testserver'){
             agent {
                 label 'testserver'
             }
@@ -26,7 +26,7 @@ pipeline {
                 echo 'Git checkout Done....'
            }
 	}
-        stage('Docker Build') {
+        stage('Docker Build on testserver') {
 	    agent {
                 label 'testserver'
             }
