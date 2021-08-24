@@ -14,8 +14,8 @@
     command: rpm -Uvh https://yum.puppet.com/puppet7-release-el-8.noarch.rpm
   - name: Install puppet agent
     yum: name=puppet state=present
-  - name: Set puppet.conf
-    copy: src=puppet.conf dest=/etc/puppet/puppet.conf owner=root group=root mode=0644
+    # - name: Set puppet.conf
+    # copy: src=puppet.conf dest=/etc/puppet/puppet.conf owner=root group=root mode=0644
   - name: Run puppet agent in test mode
     command: puppet agent -t
   - name: Make sure puppet runs
