@@ -51,6 +51,17 @@ pipeline {
                 }
                 echo 'Container Running....'
             }
+	    post {
+             failure {
+                script {
+                  echo 'Started container stopping after fail....'
+                    sh 'sudo docker stop phpApp'
+                    sh 'sudo docker rm  phpApp'
+                  echo 'container stopped after fail....'
+		}
+             }
+            }
+
         }
 
     }
