@@ -20,9 +20,9 @@ pipeline {
             agent {
                 label 'testserver'
             }
-	 steps {
+	    steps {
                 echo 'Git checkout Started....'
-            checkout scm
+                checkout scm
                 echo 'Git checkout Done....'
            }
 	}
@@ -38,5 +38,19 @@ pipeline {
                 echo 'Docker Build Done....'
             }
         }
+        stage('Container Deployemnet on testserver') {
+            agent {
+                label 'testserver'
+            }
+            steps{
+                echo 'Started container deployment....'
+                script {
+                    sh 'sudo docker stop phpApp'
+                    sh 'sudo docker run -itd -p 9001:80 --name phpApp rahmathulla/proj1:${BUILD_NUMBER}'
+                }
+                echo 'Container Running....'
+            }
+        }
+
     }
 }
