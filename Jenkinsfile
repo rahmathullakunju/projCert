@@ -22,7 +22,7 @@ pipeline {
             }
             steps {
                 echo 'Git checkout Started....'
-		checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/rahmathullakunju/projCert.git']]])
+		checkout poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/rahmathullakunju/projCert.git']]]
                 echo 'Git checkout Done....'
                 echo 'Docker Build Started....'
 	 	script {
