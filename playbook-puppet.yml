@@ -29,7 +29,7 @@
       state: present
   - name: Install puppet agent
     yum: name=puppet state=present
-  - name: Run puppet agent in test mode
-    command: puppet agent -t
+    #- name: Run puppet agent in test mode
+    #command: puppet agent -t
   - name: Make sure puppet runs
     service: name=puppet state=started enabled=yes
