@@ -15,11 +15,11 @@
     # - name: Set puppet.conf
     # copy: src=puppet.conf dest=/etc/puppet/puppet.conf owner=root group=root mode=0644
   - name: Copy rpm file to server
-  copy:
+    copy:
      src: https://yum.puppet.com/puppet7-release-el-8.noarch.rpm
      dest: /tmp/package.rpm
 
-  - name: Install package.
+  - name: Install package
      yum:
       name: /tmp/package.rpm
       state: present
