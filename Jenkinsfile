@@ -17,6 +17,9 @@ pipeline {
             }
         }
         stage('Docker Build') {
+	    agent {
+                label 'testserver'
+            }
             steps {
                 echo 'Docker Build Started....'
 	 	script {
