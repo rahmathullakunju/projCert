@@ -1,0 +1,20 @@
+-name: PUPPET
+    hosts: testserver
+    user: ec2-user
+
+tasks:
+  -name: Copy puppet repo file
+      copy: src=repo5.repo dest=/etc/yum.repos.d/puppet.repo owner=root group=root mode=0644
+      when: ansible_distribution_major_version == "5"
+      copy: src=repo6.repo dest=/etc/yum.repos.d/puppet.repo owner=root group=root mode=0644
+      when: ansible_distribution_major_version == "6"
+      copy: src=repo7.repo dest=/etc/yum.repos.d/puppet.repo owner=root group=root mode=0644
+      when: ansible_distribution_major_version == "7"
+  -name: Install puppet agent
+      yum: name=puppet state=present
+  -name: Set puppet.conf
+      copy: src=puppet.conf dest=/etc/puppet/puppet.conf owner=root group=root mode=0644
+  -name: Run puppet agent in test mode
+      command: puppet agent -t
+  -name: Make sure puppet runs
+      service: name=puppet state=started enabled=yes
