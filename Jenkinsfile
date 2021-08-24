@@ -30,6 +30,7 @@ pipeline {
 	    agent {
                 label 'testserver'
             }
+	    steps{
                 echo 'Docker Build Started....'
 	 	script {
 	            sh 'sudo docker build -t rahmathulla/proj1:${BUILD_NUMBER} .'
