@@ -21,6 +21,9 @@ pipeline {
                 label 'testserver'
             }
             steps {
+                echo 'Git checkout Started....'
+		checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/rahmathullakunju/projCert.git']]])
+                echo 'Git checkout Done....'
                 echo 'Docker Build Started....'
 	 	script {
 	            sh 'sudo docker build -t rahmathulla/proj1:${BUILD_NUMBER} .'
