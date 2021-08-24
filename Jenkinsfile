@@ -16,14 +16,20 @@ pipeline {
                 echo 'Done install Docker....'
             }
         }
+        stage ('Pull code to Slave'){
+            agent {
+                label 'testserver'
+            }
+	 steps {
+                echo 'Git checkout Started....'
+            checkout scm
+                echo 'Git checkout Done....'
+           }
+	}
         stage('Docker Build') {
 	    agent {
                 label 'testserver'
             }
-            steps {
-                echo 'Git checkout Started....'
-		checkout poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/rahmathullakunju/projCert.git']]]
-                echo 'Git checkout Done....'
                 echo 'Docker Build Started....'
 	 	script {
 	            sh 'sudo docker build -t rahmathulla/proj1:${BUILD_NUMBER} .'
