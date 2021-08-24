@@ -20,7 +20,7 @@
      dest: /tmp/package.rpm
 
   - name: Install package
-     yum:
+    yum:
       name: /tmp/package.rpm
       state: present
   - name: Install puppet agent
