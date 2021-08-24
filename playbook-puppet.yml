@@ -14,11 +14,15 @@
     #command: rpm -Uvh https://yum.puppet.com/puppet7-release-el-8.noarch.rpm
     # - name: Set puppet.conf
     # copy: src=puppet.conf dest=/etc/puppet/puppet.conf owner=root group=root mode=0644
-  - name: Copy rpm file to server
-    copy:
-     src: https://yum.puppet.com/puppet7-release-el-8.noarch.rpm
-     dest: /tmp/package.rpm
+    #- name: Copy rpm file to server
+    #copy:
+    # src: https://yum.puppet.com/puppet7-release-el-8.noarch.rpm
+    # dest: /tmp/package.rpm
 
+  - name: Download rpm
+    get_url:
+      url: https://yum.puppet.com/puppet7-release-el-8.noarch.rpm
+      dest: /tmp/package.rpm
   - name: Install package
     yum:
       name: /tmp/package.rpm
