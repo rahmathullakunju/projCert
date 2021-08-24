@@ -46,6 +46,7 @@ pipeline {
                 echo 'Started container deployment....'
                 script {
                     sh 'sudo docker stop phpApp'
+                    sh 'sudo docker rm  phpApp'
                     sh 'sudo docker run -itd -p 9001:80 --name phpApp rahmathulla/proj1:${BUILD_NUMBER}'
                 }
                 echo 'Container Running....'
