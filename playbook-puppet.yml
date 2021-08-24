@@ -4,21 +4,6 @@
   become: true
   become_user: root
   tasks:
-          #- name: Copy puppet repo file
-    #copy: src=repo5.repo dest=/etc/yum.repos.d/puppet.repo owner=root group=root mode=0644
-    #when: ansible_distribution_major_version == "5"
-    #copy: src=repo6.repo dest=/etc/yum.repos.d/puppet.repo owner=root group=root mode=0644
-    #when: ansible_distribution_major_version == "6"
-    #copy: src=https://yum.puppet.com/puppet7-release-el-8.noarch.rpm dest=/etc/yum.repos.d/puppet.repo owner=root group=root mode=0644
-    #    when: ansible_distribution_major_version == "7"
-    #command: rpm -Uvh https://yum.puppet.com/puppet7-release-el-8.noarch.rpm
-    # - name: Set puppet.conf
-    # copy: src=puppet.conf dest=/etc/puppet/puppet.conf owner=root group=root mode=0644
-    #- name: Copy rpm file to server
-    #copy:
-    # src: https://yum.puppet.com/puppet7-release-el-8.noarch.rpm
-    # dest: /tmp/package.rpm
-
   - name: Download rpm
     get_url:
       url: https://yum.puppet.com/puppet7-release-el-8.noarch.rpm
@@ -29,7 +14,5 @@
       state: present
   - name: Install puppet agent
     yum: name=puppet state=present
-    #- name: Run puppet agent in test mode
-    #command: puppet agent -t
   - name: Make sure puppet runs
     service: name=puppet state=started enabled=yes

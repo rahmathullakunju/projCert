@@ -11,14 +11,18 @@ pipeline {
         }
         stage('Install Docker on Slave') {
             steps {
-                echo 'Start to install puppet agent....'
+                echo 'Start to install Docker....'
 		ansiblePlaybook become: true, credentialsId: '86ef8ad7-51f2-48ee-8d6e-257ad6f9bd79', disableHostKeyChecking: true, installation: 'MyAnsible', inventory: 'puppet.inv', playbook: 'docker-playbook.yml'
-                echo 'Done install puppet agent....'
+                echo 'Done install Docker....'
             }
         }
-        stage('Deploy') {
+        stage('Docker Build') {
             steps {
-                echo 'Deploying....'
+                echo 'Docker Build Started....'
+	 	script {
+	            sh 'sudo docker build -t rahmathulla/proj1:${BUILD_NUMBER}'
+                }	
+                echo 'Docker Build Done....'
             }
         }
     }
