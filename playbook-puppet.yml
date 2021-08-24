@@ -1,6 +1,8 @@
--name: PUPPET
- hosts: testserver
- user: ec2-user
+---
+- name: PUPPET
+  hosts: testserver
+  become: true
+  become_user: root
 
 tasks:
   -name: Copy puppet repo file
