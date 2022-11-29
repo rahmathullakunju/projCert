@@ -8,3 +8,4 @@ RUN echo "" >> /etc/apache2/mods-enabled/dir.conf
 RUN echo "# vim: syntax=apache ts=4 sw=4 sts=4 sr noet" >> /etc/apache2/mods-enabled/dir.conf
 expose 80
 CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
+
