@@ -45,7 +45,10 @@ pipeline {
             steps{
                 echo 'Started container deployment....'
                 script {
-                    sh 'sudo docker stop phpApp'
+		    def inspectExitCode = sh script: "docker ps -f name=phpApp", returnStatus: true
+		    if (inspectExitCode == 0) {
+    			sh 'sudo docker stop phpApp'
+		    }
                     sh 'sudo docker rm  phpApp'
                     sh 'sudo docker run -itd -p 9001:80 --name phpApp rahmathulla/proj1:${BUILD_NUMBER}'
                 }
