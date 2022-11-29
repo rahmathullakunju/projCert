@@ -16,3 +16,4 @@
     yum: name=puppet state=present
   - name: Make sure puppet runs
     service: name=puppet state=started enabled=yes
+
