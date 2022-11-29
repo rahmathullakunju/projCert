@@ -45,7 +45,7 @@ pipeline {
             steps{
                 echo 'Started container deployment....'
                 script {
-		    def inspectExitCode = sh script: "docker ps -f name=phpApp", returnStatus: true
+		    def inspectExitCode = sh script: "sudo docker ps -f name=phpApp", returnStatus: true
 		    if (inspectExitCode == 0) {
     			sh 'sudo docker stop phpApp'
 		    }
