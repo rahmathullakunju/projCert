@@ -8,3 +8,4 @@
     yum: name=docker state=present
   - name: Make sure docker runs
     service: name=docker state=started enabled=yes
+
